@@ -7,6 +7,7 @@ class Window:
         self.__root.title(title)
         self.canvas = Canvas(self.__root, bg=bg_color, width=width, height=height)
         self.canvas.pack(fill=BOTH, expand=1)
+        self.bg_color = bg_color
         self.running = False
 
     def redraw(self):

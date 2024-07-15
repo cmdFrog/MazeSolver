@@ -1,4 +1,5 @@
 import time
+#import pprint
 from cell import Cell
 
 class Maze:
@@ -12,6 +13,7 @@ class Maze:
         self.win = win
         self._cells = []
         self._create_cells()
+        self._break_entrance_and_exit()
 
     def _create_cells(self):
         self._cells = [[Cell(self.win) for _ in range(self.num_rows)] for _ in range(self.num_cols)]
@@ -31,15 +33,13 @@ class Maze:
         if not self.win:
             return
         self.win.redraw()
-        time.sleep(0.05)
+        time.sleep(0.03)
 
-
-
-
-
-
-
-
+    def _break_entrance_and_exit(self):
+        self._cells[0][0].has_top_wall = False
+        self._draw_cells(0, 0)
+        self._cells[self.num_cols - 1][self.num_rows - 1].has_bottom_wall = False
+        self._draw_cells(self.num_cols - 1, self.num_rows - 1)
 
 
 
