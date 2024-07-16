@@ -61,7 +61,7 @@ class Cell:
         to_center = to_cell.center_point()
         if not undo:
             line = Line(self_center, to_center)
-            self._win.draw_line(line, "gray")
+            self._win.draw_line(line, "medium purple")
         if undo:
             line = Line(self_center, to_center)
             self._win.draw_line(line, "red")
