@@ -34,7 +34,7 @@ class Window:
         self.maze_button = Button(self.main_frame, text="Create Maze", command=self.create_maze)
         self.maze_button.grid(row=0, column=3, padx=5)
 
-        self.solve_button = Button(self.main_frame, text="Solve", command=self.solve_maze)
+        self.solve_button = Button(self.main_frame, text="Solve", command=self.solve_maze, state="disabled")
         self.solve_button.grid(row=1, column=3, padx=5)
 
         self.set_seed_checkbutton = Checkbutton(self.main_frame, text="Set fixed seed", variable=self.set_seed_var, command=self.toggle_seed_entry)
