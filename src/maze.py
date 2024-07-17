@@ -58,6 +58,8 @@ class Maze:
             return
 
         while True:
+            if self.win.close_flag:
+                break
             directions = []
             # check directions
 
