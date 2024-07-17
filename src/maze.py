@@ -26,6 +26,8 @@ class Maze:
         self._cells = [[Cell(self.win) for _ in range(self.num_rows)] for _ in range(self.num_cols)]
         for i in range(self.num_cols):
             for j in range(self.num_rows):
+                if self.win.close_flag:
+                    return
                 self._draw_cells(i, j)
 
     def _draw_cells(self, i, j):
@@ -52,10 +54,11 @@ class Maze:
 
     def _break_walls_r(self, i ,j):
         self._cells[i][j].visited = True
+        if self.win.close_flag:
+            return
 
         while True:
             directions = []
-
             # check directions
 
             if j > 0 and not self._cells[i][j - 1].visited: # up
@@ -109,6 +112,8 @@ class Maze:
 
     def _solve_r(self, i, j):
         self._animate()
+        if self.win.close_flag:
+            return
         self._cells[i][j].visited = True
         if self._cells[i][j] == self._cells[self.num_cols - 1][self.num_rows - 1]:
             return True

@@ -12,6 +12,7 @@ class Window:
         self.seed_var = StringVar()
         self.submitted_seed = None
         self.set_seed_var = BooleanVar()
+        self.close_flag = False
         self._input()
         self.maze = None
         self.submitted_number = None
@@ -47,6 +48,8 @@ class Window:
 
         self.entry.bind('<Return>', self.submit)
         self.seed_submit_button.bind('<Return>', self.submit_seed)
+        self.entry.bind('<KP_Enter>', self.submit)
+        self.seed_submit_button.bind('<KP_Enter>', self.submit_seed)
 
         self.result_label = Label(self.main_frame, text="")
         self.result_label.grid(row=1, column=0, columnspan=3, sticky="w")
@@ -76,8 +79,8 @@ class Window:
 
     def submit(self, _event=None):
         input_text = self.var.get()
-        if input_text == "" or int(input_text) > 100:
-            self.result_label.config(text="No or invalid input. Max size is 100.", fg="red")
+        if input_text == "" or int(input_text) > 15:
+            self.result_label.config(text="No or invalid input. Max size is 15.", fg="red")
         else:
             self.result_label.config(text=f"Entered number: {input_text}", fg="green")
             self.submitted_number = int(input_text)
@@ -119,6 +122,7 @@ class Window:
 
     def close(self):
         self.running = False
+        self.close_flag = True
 
     def draw_line(self, line, fill_color="white"):
         line.draw(self.canvas, fill_color)
