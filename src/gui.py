@@ -6,7 +6,7 @@ class Window:
         self.__root = Tk()
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
         self.__root.title(title)
-        self.canvas = Canvas(self.__root, bg=bg_color, width=width, height=height)
+        self.canvas = Canvas(self.__root, bg=bg_color, width=width, height=height, bd=0, highlightbackground="gray48", highlightthickness=5)
         self.canvas.pack(fill=BOTH, expand=1)
         self.var = StringVar()
         self.seed_var = StringVar()
