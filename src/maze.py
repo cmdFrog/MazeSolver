@@ -15,6 +15,8 @@ class Maze:
         if seed:
             random.seed(seed)
         self._cells = []
+        self.anim_finished = True
+        self.solve_finished = True
         self._create_cells()
         self._break_entrance_and_exit()
         self._break_walls_r(0, 0)
@@ -27,12 +29,14 @@ class Maze:
                 self._draw_cells(i, j)
 
     def _draw_cells(self, i, j):
+        self.anim_finished = False
         x1 = self.x1 + i * self.cell_size_x
         y1 = self.y1 + j * self.cell_size_y
         x2 = x1 + self.cell_size_x
         y2 = y1 + self.cell_size_y
         self._cells[i][j].draw(x1, y1, x2, y2)
         self._animate()
+        self.anim_finished = True
 
     def _animate(self):
         if not self.win:
@@ -96,7 +100,12 @@ class Maze:
                 cell.visited = False
 
     def solve(self):
-        return self._solve_r(0, 0)
+        self.solve_finished = False
+        if self._solve_r(0, 0) is True:
+            self.solve_finished = True
+            return True
+        self.solve_finished = True
+        return False
 
     def _solve_r(self, i, j):
         self._animate()
