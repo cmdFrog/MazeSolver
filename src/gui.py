@@ -20,40 +20,41 @@ class Window:
         self.running = False
 
     def _input(self):
+        # Frame
         self.main_frame = Frame(self.__root, bg=self.bg_color, pady=5, padx=5, highlightthickness=0)
         self.main_frame.pack(fill=BOTH, expand=1)
-
+        # Size input label
         self.entry_label = Label(self.main_frame, bg=self.bg_color, text="Enter maze size:", fg="white", font='Helvetica 10 bold', highlightthickness=0)
         self.entry_label.grid(row=0, column=0, sticky="w")
-
+        # Size input entry
         self.entry = Entry(self.main_frame, textvariable=self.var, validate="key", validatecommand=(self.__root.register(self.validate), '%P'), highlightthickness=0)
         self.entry.grid(row=0, column=1, padx=5)
-
+        # Size input button
         self.submit_button = Button(self.main_frame, text="Submit", command=self.submit, highlightthickness=0)
         self.submit_button.grid(row=0, column=2, padx=5)
-
+        # Maze build button
         self.maze_button = Button(self.main_frame, text="Create Maze", command=self.create_maze, highlightthickness=0)
         self.maze_button.grid(row=0, column=3, padx=5, pady=5)
-
+        # Maze solve button
         self.solve_button = Button(self.main_frame, text="Solve", command=self.solve_maze, state="disabled", highlightthickness=0)
         self.solve_button.grid(row=1, column=3, padx=5, pady=5)
-
+        # Set seed checkbox
         self.set_seed_checkbutton = Checkbutton(self.main_frame, text="Set fixed seed", variable=self.set_seed_var, command=self.toggle_seed_entry, bg=self.bg_color, fg="white", font='Helvetica 10 bold', highlightthickness=0, selectcolor="black")
         self.set_seed_checkbutton.grid(row=0, column=4, padx=5, sticky="e")
-
+        # Seed submit button
         self.seed_submit_button = Button(self.main_frame, text="Submit Seed", command=self.submit_seed, state='disabled', highlightthickness=0)
         self.seed_submit_button.grid(row=0, column=6, padx=5, sticky="e")
-
+        # Seed input entry
         self.seed_entry = Entry(self.main_frame, textvariable=self.seed_var, validate="key", validatecommand=(self.__root.register(self.validate), '%P'), state="disabled", highlightthickness=0)
         self.seed_entry.grid(row=0, column=5, padx=5, sticky="e")
-
+        # General result label for all user actions
+        self.result_label = Label(self.main_frame, text="", bg=self.bg_color, highlightthickness=0, font='Helvetica 10 bold')
+        self.result_label.grid(row=1, column=0, columnspan=3, sticky="w")
+        # Key bindings for entry fields (enter and num pad enter)
         self.entry.bind('<Return>', self.submit)
         self.seed_submit_button.bind('<Return>', self.submit_seed)
         self.entry.bind('<KP_Enter>', self.submit)
         self.seed_submit_button.bind('<KP_Enter>', self.submit_seed)
-
-        self.result_label = Label(self.main_frame, text="", bg=self.bg_color, highlightthickness=0, font='Helvetica 10 bold')
-        self.result_label.grid(row=1, column=0, columnspan=3, sticky="w")
 
     def validate(self, new_value):
         if new_value.isdigit() or new_value == "":
