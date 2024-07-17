@@ -1,5 +1,3 @@
-from gui import Point, Line
-
 class Cell:
     def __init__(self, win=None):
         self.has_left_wall = True
@@ -65,6 +63,21 @@ class Cell:
         if undo:
             line = Line(self_center, to_center)
             self._win.draw_line(line, "red")
+
+class Point:
+    def __init__(self, x: int, y: int):
+        self.x = x
+        self.y = y
+
+class Line:
+    def __init__(self, point_1, point_2):
+        self.point_1 = point_1
+        self.point_2 = point_2
+
+    def draw(self, canvas, fill_color: str):
+        canvas.create_line(
+            self.point_1.x, self.point_1.y, self.point_2.x, self.point_2.y, fill=fill_color, width=2
+        )
 
     if __name__ == "__main__":
         pass
