@@ -6,7 +6,8 @@ class Window:
         self.__root = Tk()
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
         self.__root.title(title)
-        self.__root.iconbitmap("cmdFrog.ico")
+        self.icopath = "src/cmdFrog.ico"
+        self.__root.iconbitmap("src/cmdFrog.ico")
         self.canvas = Canvas(self.__root, bg=bg_color, width=width, height=height, bd=0, highlightbackground="gray48", highlightthickness=5)
         self.canvas.pack(fill=BOTH, expand=1)
         self.__root.resizable(False, False)
