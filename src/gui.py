@@ -52,9 +52,9 @@ class Window:
         self.result_label.grid(row=1, column=0, columnspan=3, sticky="w")
         # Key bindings for entry fields (enter and num pad enter)
         self.entry.bind('<Return>', self.submit)
-        self.seed_submit_button.bind('<Return>', self.submit_seed)
+        self.seed_entry.bind('<Return>', self.submit_seed)
         self.entry.bind('<KP_Enter>', self.submit)
-        self.seed_submit_button.bind('<KP_Enter>', self.submit_seed)
+        self.seed_entry.bind('<KP_Enter>', self.submit_seed)
 
     def validate(self, new_value):
         if new_value.isdigit() or new_value == "":
