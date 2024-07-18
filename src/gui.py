@@ -2,12 +2,11 @@ from tkinter import Tk, BOTH, Canvas, Entry, Button, Label, StringVar, BooleanVa
 from maze import Maze
 
 class Window:
-    def __init__(self, width: int, height: int, bg_color: str, title: str):
+    def __init__(self, width: int, height: int, bg_color: str, title: str, path: str):
         self.__root = Tk()
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
         self.__root.title(title)
-        self.icopath = "src/cmdFrog.ico"
-        self.__root.iconbitmap("src/cmdFrog.ico")
+        self.__root.iconbitmap(path)
         self.canvas = Canvas(self.__root, bg=bg_color, width=width, height=height, bd=0, highlightbackground="gray48", highlightthickness=5)
         self.canvas.pack(fill=BOTH, expand=1)
         self.__root.resizable(False, False)
@@ -133,5 +132,4 @@ class Window:
         line.draw(self.canvas, fill_color)
 
 if __name__ == "__main__":
-    window = Window(800, 600, "gray37", "Test Window")
-    window.wait_for_close()
+    pass
